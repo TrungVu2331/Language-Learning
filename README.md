@@ -9,6 +9,11 @@ Tạo ra một trang web học tập cho phép người dùng có thể học ng
 - **HTML**
 - **CSS**
 - **Java**
+- **Spring Boot**
+- **MySQL**
+- **JavaScript**
+- **Web Speech API**
+- **RESTful API**
 
 ## 🚀 Mục Tiêu Chính
 
