@@ -2,7 +2,7 @@
 
 ## ✨ Ý Tưởng
 
-Tạo ra một trang web dự báo thời tiết tại vị trí 
+Tạo ra một trang web dự báo thời tiết tại vị trí và tìm kiếm dự báo thời tiết tại vị trí bạn tìm
 
 ## 🛠️ Công Nghệ Sử Dụng Dự Kiến
 
