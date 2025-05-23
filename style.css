@@ -1,0 +1,72 @@
+:root
+{
+    --main-bg-color: #f0f0f0;
+    --main-text-color: #333;
+    --main-font: 'Arial, sans-serif';
+}
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body
+{
+   min-height: 100vh;
+   background-color: var(--main-bg-color);
+    color: var(--main-text-color);
+    font-family: var(--main-font);
+    padding: 0 15px;
+}
+.header
+{
+    position: sticky;
+    top: 0;
+    background-color: var(--main-bg-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 15px 0;
+    & #city_input
+    {
+        background-color: var(--main-bg-color);
+        border: none;
+        padding: 12px;
+        font-size: 16px;
+        border-radius: 25px;
+        color: var(--main-text-color);
+        &:focus
+        {
+            outline: none;
+        }
+    }
+    & #searchBtn
+    {
+        background-color: var(--main-bg-color);
+        border: none;
+        padding: 12px;
+        font-size: 16px;
+        border-radius: 25px;
+        color: var(--main-text-color);
+        cursor: pointer;
+        &:hover
+        {
+            background-color: #e0e0e0;
+        }
+    }
+    & #LocationBtn
+    {
+        background-color: var(--main-bg-color);
+        border: none;
+        padding: 12px;
+        font-size: 16px;
+        border-radius: 25px;
+        color: var(--main-text-color);
+        cursor: pointer;
+        &:hover
+        {
+            background-color: #e0e0e0;
+        }
+    }
+}
