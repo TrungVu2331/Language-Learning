@@ -17,6 +17,7 @@ Tạo ra một trang web dự báo thời tiết tại vị trí và tìm kiếm
 - Giao diện đơn giản, thân thiện với người dùng.
 - Hệ thống theo dõi thời tiết trong 5 ngày.
 - Tìm kiếm theo dõi thời tiết từ các nơi khác.
+- Thông báo chất lượng không khí
 
 ## 🧩 Tiện Ích
 
@@ -35,3 +36,4 @@ Tạo ra một trang web dự báo thời tiết tại vị trí và tìm kiếm
 -Giao diện dark/light mode
 -Tích hợp bản đồ
 -Đa ngôn ngữ (tiếng Việt, tiếng Anh)
+-Cập nhật thêm vị trí
