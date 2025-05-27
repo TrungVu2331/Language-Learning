@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather Forcast</title>
+    <title>Dự Báo Thời Tiết</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css">
@@ -13,14 +13,14 @@
 <body>
     <div class="container">
         <div class ="header">
-            <h2>Weather</h2>
+            <h2>Thời Tiết</h2>
             <div class="weather-input">
-                <input type="text" name="city" id="city_input" placeholder="Enter city name">
+                <input type="text" name="city" id="city_input" placeholder="Nhập tên thành phố">
                 <button type="button" id="searchBtn">
                     <i class="bi bi-search"></i> Tìm Kiếm
                 </button>
-                <button type="button" id="LocationBtn">
-                    <i class="bi bi-crosshair"></i>Vị Trí Hiện Tại
+                <button type="button" id="locationBtn">
+                    <i class="bi bi-crosshair"></i> Vị Trí Hiện Tại
                 </button>
             </div>
         </div>
@@ -90,12 +90,12 @@
                 </div>
             </div>
             <div class="weather-right">
-                <h2>Nhiệt độ hôm nay</h2>
+                <h2>Nổi Bật</h2>
                 <div class="highlights">
                     <div class="card">
                         <div class="card-head">
                             <p>Chất Lượng Không Khí</p>
-                            <p class="air-index aqi-5">Good</p>
+                            <p class="air-index aqi-1">Good</p>
                         </div>
                         <div class="air-indices">
                             <i class="bi bi-wind"></i>
@@ -135,7 +135,7 @@
                     </div>
                     <div class="card">
                         <div class="card-head">
-                            <p>Sunrise & Sunset</p>
+                            <p>Mặt Trời Mọc & Lặn</p>
                         </div>
                         <div class="sunrise-sunset">
                             <div class="item">
@@ -143,7 +143,7 @@
                                     <i class="bi bi-sunrise-fill"></i>
                                 </div>
                                 <div>
-                                    <p>Sunrise</p>
+                                    <p>Mặt Trời Mọc</p>
                                     <h2>____</h2>
                                 </div>
                             </div>
@@ -152,7 +152,7 @@
                                     <i class="bi bi-sunset"></i>
                                 </div>
                                 <div>
-                                    <p>Sunset</p>
+                                    <p>Mặt Trời Lặn</p>
                                     <h2>____</h2>
                                 </div>
                             </div>
@@ -160,7 +160,7 @@
                     </div>
                     <div class="card">
                         <div class="card-head">
-                            <p>Humidity</p>
+                            <p>Độ Ẩm</p>
                         </div>
                         <div class="card-item">
                             <i class="bi bi-droplet-fill"></i>
@@ -169,7 +169,7 @@
                     </div>
                     <div class="card">
                         <div class="card-head">
-                            <p>Pressure</p>
+                            <p>Áp Suất Khí Quyển</p>
                         </div>
                         <div class="card-item">
                             <i class="bi bi-compass-fill"></i>
@@ -178,7 +178,7 @@
                     </div>
                     <div class="card">
                         <div class="card-head">
-                            <p>Visibility</p>
+                            <p>Tầm Nhìn</p>
                         </div>
                         <div class="card-item">
                             <i class="bi bi-eye-fill"></i>
@@ -187,7 +187,7 @@
                     </div>
                     <div class="card">
                         <div class="card-head">
-                            <p>Wind Speed</p>
+                            <p>Tốc Độ Gió</p>
                         </div>
                         <div class="card-item">
                             <i class="bi bi-tornado"></i>
@@ -196,7 +196,7 @@
                     </div>
                     <div class="card">
                         <div class="card-head">
-                            <p>Feels like</p>
+                            <p>Cảm Giác</p>
                         </div>
                         <div class="card-item">
                             <i class="bi bi-thermometer"></i>
@@ -204,7 +204,7 @@
                         </div>
                     </div>
                 </div>
-                <h2>Today at</h2>
+                <h2>Hôm Nay Tại</h2>
                 <div class="hourly-forecast">
                     <div class="card">
                         <p>9 AM</p>
@@ -250,5 +250,7 @@
             </div>
         </div>
     </div>
+    <script src="https://momentjs.com/downloads/moment.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

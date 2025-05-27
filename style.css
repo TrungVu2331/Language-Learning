@@ -68,15 +68,21 @@ hr{
         border-radius: 25px;
         cursor: pointer;
     }
-    & #LocationBtn
+    & #locationBtn
     {
         background-color: #33FF33;
         border: none;
-        padding: 12px;
+        padding: 13px;
         font-size: 16px;
         border-radius: 25px;
         cursor: pointer;
     }
+}
+#searchBtn:hover,
+#locationBtn:hover {
+    opacity: 0.9;
+    transform: scale(1.03);
+    transition: all 0.2s ease-in-out;
 }
 .card{
     background-color: var(--bg-color2);
@@ -289,7 +295,7 @@ hr{
         & h2{
             margin-bottom: 8px;
         }
-        & #city_input, #searchBtn, #LocationBtn
+        & #city_input, #searchBtn, #locationBtn
         {
             width: 100%;
             margin-bottom: 10px;
