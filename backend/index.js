@@ -9,8 +9,19 @@ const redisClient = redis.createClient();
 app.use(cors()); // Cho phép frontend gọi từ domain khác
 app.use(express.json());
 
-app.use('/api/weather', require('./routes/weather'));
+redisClient.connect().catch(console.error);
+app.set('redisClient', redisClient);
+
 app.use('/api/weather', weatherRoutes);
+
+const fs = require('fs');
+const path = require('path');
+
+const logsDir = path.join(__dirname, 'logs');
+if (!fs.existsSync(logsDir)) {
+    fs.mkdirSync(logsDir);
+}
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

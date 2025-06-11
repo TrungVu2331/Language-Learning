@@ -1,4 +1,3 @@
-
 const cityInput = document.getElementById('city_input');
 const searchBtn = document.getElementById('searchBtn');
 const locationBtn = document.getElementById('locationBtn');
@@ -12,11 +11,14 @@ const visibility = document.getElementById('visibility');
 const windSpeedVal = document.getElementById('windSpeedVal');
 const feelsVal = document.getElementById('feelsVal');
 const hourlyForecastCard = document.querySelector('.hourly-forecast');
-const aqiList = ['Tốt', 'Vừa', 'Vừa Phải', 'Tệ', 'Rất Tệ'];
+
 const API_BASE = 'http://localhost:3000/api/weather';
 const days = ['Chủ Nhật', 'Thứ Hai', 'Thứ Ba', 'Thứ Tư', 'Thứ Năm', 'Thứ Sáu', 'Thứ Bảy'];
 const months = ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'];
+const aqiList = ['Tốt', 'Vừa', 'Vừa Phải', 'Tệ', 'Rất Tệ'];
 
+let hasAutoLoaded = false;
+let forecastCallCount =0;
 function getWeatherDetails(lat, lon) {
     fetch(`${API_BASE}/forecast?lat=${lat}&lon=${lon}`)
         .then(res => res.json())
@@ -70,12 +72,12 @@ function getWeatherDetails(lat, lon) {
             windSpeedVal.innerHTML = `${current.wind_kph} km/h`;
             feelsVal.innerHTML = `${Math.round(current.feelslike_c)}&deg;C`;
 
-            const { sunrise: sunriseTime, sunset: sunsetTime } = data.forecast.forecastday[0].astro;
+            const { sunrise, sunset } = data.forecast.forecastday[0].astro;
             sunriseCard.innerHTML = `
                 <div class="card-head"><p>Mặt Trời Mọc & Lặn</p></div>
                 <div class="sunrise-sunset">
-                    <div class="item"><div class="icon"><i class="bi bi-sunrise-fill"></i></div><div><p>Mặt Trời Mọc</p><h2>${sunriseTime}</h2></div></div>
-                    <div class="item"><div class="icon"><i class="bi bi-sunset"></i></div><div><p>Mặt Trời Lặn</p><h2>${sunsetTime}</h2></div></div>
+                    <div class="item"><div class="icon"><i class="bi bi-sunrise-fill"></i></div><div><p>Mặt Trời Mọc</p><h2>${sunrise}</h2></div></div>
+                    <div class="item"><div class="icon"><i class="bi bi-sunset"></i></div><div><p>Mặt Trời Lặn</p><h2>${sunset}</h2></div></div>
                 </div>
             `;
 
@@ -123,26 +125,52 @@ function getWeatherDetails(lat, lon) {
 function getCityCoordinates() {
     const cityName = cityInput.value.trim();
     cityInput.value = '';
-    const GEOCODING_API_URL = `https://api.weatherapi.com/v1/search.json?key=cf2eae3406b4416da84143933252705&q=${encodeURIComponent(cityName)}`;
-    fetch(GEOCODING_API_URL)
+    if (!cityName) return alert('Vui lòng nhập tên thành phố.');
+
+    fetch(`${API_BASE}/geocode?city=${encodeURIComponent(cityName)}`)
         .then(res => res.json())
         .then(data => {
-            const { lat, lon } = data[0];
+            if (!data.lat || !data.lon) throw new Error('Không tìm thấy vị trí.');
+            const lat = +parseFloat(data.lat).toFixed(3);
+            const lon = +parseFloat(data.lon).toFixed(3);
             getWeatherDetails(lat, lon);
         })
         .catch(() => alert('Không tìm thấy thành phố.'));
 }
 
-function getUserCoordinates() {
+function getUserCoordinates(force = false) {
+    if (!navigator.geolocation) return;
+
     navigator.geolocation.getCurrentPosition(position => {
-        const { latitude: lat, longitude: lon } = position.coords;
+        const lat = parseFloat(position.coords.latitude).toFixed(3);
+        const lon = parseFloat(position.coords.longitude).toFixed(3);
         getWeatherDetails(lat, lon);
-    }, error => {
+    }, () => {
         alert('Không thể lấy vị trí.');
     });
 }
 
-searchBtn.addEventListener('click', getCityCoordinates);
-locationBtn.addEventListener('click', getUserCoordinates);
-cityInput.addEventListener('keyup', e => e.key === 'Enter' && getCityCoordinates());
-window.addEventListener('load', getUserCoordinates);
+// Sự kiện người dùng
+searchBtn.addEventListener('click', e => {
+    e.preventDefault();
+    getCityCoordinates();
+});
+
+cityInput.addEventListener('keyup', e => {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        getCityCoordinates();
+    }
+});
+
+locationBtn.addEventListener('click', () => {
+    getUserCoordinates(true);
+});
+
+// Auto load vị trí đúng 1 lần
+document.addEventListener('DOMContentLoaded', () => {
+    if (!hasAutoLoaded) {
+        hasAutoLoaded = true;
+        getUserCoordinates();
+    }
+});
